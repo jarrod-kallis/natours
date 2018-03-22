@@ -58,8 +58,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   /* The .btn is 'display: inline-block' which is treated as text.
-     This means that centering text will center the .btn
-  */
+     This means that centering text will center the .btn */
   text-align: center;
 }
 
@@ -130,6 +129,18 @@ body {
   }
 }
 
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .btn:link,
 .btn:visited {
   text-transform: uppercase;
@@ -139,6 +150,10 @@ body {
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;
+  /* Relative positioning so that the ::after pseudo
+     class will be based on the .btn and not the next
+     parent with 'position: relative' */
+  position: relative;
 }
 
 .btn:hover {
@@ -153,7 +168,38 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+/* 'after' pseudo state for the 'hover' state */
+.btn:hover::after {
+  /* Grow the button */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s 0.75s ease-out;
+  /* Apply the styles of the 0% (moveInBottom animation)
+     before the animation starts */
+  animation-fill-mode: backwards;
 }
