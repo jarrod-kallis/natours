@@ -14,7 +14,7 @@ Dark green: #28b485
 }
 
 html {
-  /* Make root font-size 10px, because it's 
+  /* Make root font-size 10px, because it's
      easier to calculate rem values in your head */
   font-size: 10px;
 }
@@ -160,6 +160,7 @@ body {
      class will be based on the .btn and not the next
      parent with 'position: relative' */
   position: relative;
+  font-size: 1.6rem;
 }
 
 .btn:hover {
