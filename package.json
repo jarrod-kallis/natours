@@ -1,0 +1,13 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Advanced CSS course on Udemy",
+  "main": "index.js",
+  "repository": "https://github.com/jarrod-kallis/natours.git",
+  "author": "Jarrod Kallis <jarrod.kallis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.7.2"
+  }
+}
