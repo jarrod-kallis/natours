@@ -10,7 +10,7 @@ Dark green: #28b485
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 html {
@@ -28,6 +28,7 @@ html {
      Since we want our default font size to be 10px
      we need to make it 62.5% (10/16*100) */
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
