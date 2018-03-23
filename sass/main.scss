@@ -1,0 +1,224 @@
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-grey-dark: #777;
+$color-white: #ff7;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* Make root font-size 10px, because it's
+     easier to calculate rem values in your head */
+  /* font-size: 10px; */
+
+  /* It is bad practice to hard code the default font
+     size, because if someone changes their browser's
+     default font size, because they can't see well
+     then we will ignore their setting.
+     We need to change our default font size to be a
+     percentage of the browser's default font size,
+     which is 16px.
+     Since we want our default font size to be 10px
+     we need to make it 62.5% (10/16*100) */
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 3rem;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  /* So its children can have absolute positioning */
+  position: relative;
+}
+
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+
+.header__logo {
+  height: 3.5rem;
+}
+
+/* .logo-box:hover .logo {
+  animation: moveInRight 1s ease-out;
+} */
+
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* The .btn is 'display: inline-block' which is treated as text.
+     This means that centering text will center the .btn */
+  text-align: center;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  /* Hack to fix animation 'shake' */
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  /* Remove letter spacing from the last letter */
+  margin-right: -3.5rem;
+  /* Animation */
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+
+  /*
+  animation-delay: 3s;
+  animation-iteration-count: 3;
+  */
+}
+
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.74rem;
+  margin-right: -1.74rem;
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  /* inline-block is treated as if it's text */
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all 0.2s;
+  /* Relative positioning so that the ::after pseudo
+     class will be based on the .btn and not the next
+     parent with 'position: relative' */
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.btn:hover {
+  /* Move button up */
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/* When you click an element */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+/* 'after' pseudo state for the 'hover' state */
+.btn:hover::after {
+  /* Grow the button */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn--white {
+  background-color: $color-white;
+  color: $color-grey-dark;
+}
+
+.btn--white::after {
+  background-color: $color-white;
+}
+
+.btn--animated {
+  animation: moveInBottom 0.5s 0.75s ease-out;
+  /* Apply the styles of the 0% (moveInBottom animation)
+     before the animation starts */
+  animation-fill-mode: backwards;
+}
