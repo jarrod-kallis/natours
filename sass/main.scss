@@ -4,6 +4,13 @@ $color-primary-dark: #28b485;
 
 $color-grey-dark: #777;
 $color-white: #fff;
+$color-black: #000;
+
+@mixin center($top) {
+  top: $top;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 *,
 *::after,
@@ -54,30 +61,27 @@ body {
 
   /* So its children can have absolute positioning */
   position: relative;
-}
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
 
-.header__logo {
-  height: 3.5rem;
-}
+  &__logo {
+    height: 3.5rem;
+  }
 
-/* .logo-box:hover .logo {
-  animation: moveInRight 1s ease-out;
-} */
-
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* The .btn is 'display: inline-block' which is treated as text.
-     This means that centering text will center the .btn */
-  text-align: center;
+  &__text-box {
+    position: absolute;
+    // top: 40%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    @include center(40%);
+    /* The .btn is 'display: inline-block' which is treated as text.
+       This means that centering text will center the .btn */
+    text-align: center;
+  }
 }
 
 .heading-primary {
@@ -86,33 +90,33 @@ body {
   /* Hack to fix animation 'shake' */
   backface-visibility: hidden;
   margin-bottom: 6rem;
-}
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  /* Remove letter spacing from the last letter */
-  margin-right: -3.5rem;
-  /* Animation */
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    /* Remove letter spacing from the last letter */
+    margin-right: -3.5rem;
+    /* Animation */
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
 
-  /*
-  animation-delay: 3s;
-  animation-iteration-count: 3;
-  */
-}
+    /*
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+    */
+  }
 
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.74rem;
-  margin-right: -1.74rem;
-  animation: moveInRight 1s ease-out;
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    margin-right: -1.74rem;
+    animation: moveInRight 1s ease-out;
+  }
 }
 
 @keyframes moveInLeft {
@@ -159,66 +163,68 @@ body {
   }
 }
 
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  /* inline-block is treated as if it's text */
-  display: inline-block;
-  border-radius: 10rem;
-  transition: all 0.2s;
-  /* Relative positioning so that the ::after pseudo
-     class will be based on the .btn and not the next
-     parent with 'position: relative' */
-  position: relative;
-  font-size: 1.6rem;
-}
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    /* inline-block is treated as if it's text */
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    /* Relative positioning so that the ::after pseudo
+      class will be based on the .btn and not the next
+      parent with 'position: relative' */
+    position: relative;
+    font-size: 1.6rem;
+  }
 
-.btn:hover {
-  /* Move button up */
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-}
+  &:hover {
+    /* Move button up */
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
-/* When you click an element */
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-}
+    /* 'after' pseudo state for the 'hover' state */
+    &::after {
+      /* Grow the button */
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
 
-.btn::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all 0.4s;
-}
+  /* When you click an element */
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
 
-/* 'after' pseudo state for the 'hover' state */
-.btn:hover::after {
-  /* Grow the button */
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
 
-.btn--white {
-  background-color: $color-white;
-  color: $color-grey-dark;
-}
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
 
-.btn--white::after {
-  background-color: $color-white;
-}
+    &::after {
+      background-color: $color-white;
+    }
+  }
 
-.btn--animated {
-  animation: moveInBottom 0.5s 0.75s ease-out;
-  /* Apply the styles of the 0% (moveInBottom animation)
-     before the animation starts */
-  animation-fill-mode: backwards;
+  &--animated {
+    animation: moveInBottom 0.5s 0.75s ease-out;
+    /* Apply the styles of the 0% (moveInBottom animation)
+       before the animation starts */
+    animation-fill-mode: backwards;
+  }
 }
