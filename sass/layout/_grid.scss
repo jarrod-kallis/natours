@@ -1,0 +1,10 @@
+.row {
+  max-width: $grid-width;
+  background-color: #eee;
+  // Center a block element inside another block element
+  margin: 0 auto;
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+}
