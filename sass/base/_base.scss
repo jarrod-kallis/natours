@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* Make root font-size 10px, because it's
+     easier to calculate rem values in your head */
+  /* font-size: 10px; */
+
+  /* It is bad practice to hard code the default font
+     size, because if someone changes their browser's
+     default font size, because they can't see well
+     then we will ignore their setting.
+     We need to change our default font size to be a
+     percentage of the browser's default font size,
+     which is 16px.
+     Since we want our default font size to be 10px
+     we need to make it 62.5% (10px/16px*100).
+     Indicates what 1rem is. */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

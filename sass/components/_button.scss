@@ -1,0 +1,65 @@
+.btn {
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    /* inline-block is treated as if it's text */
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    /* Relative positioning so that the ::after pseudo
+      class will be based on the .btn and not the next
+      parent with 'position: relative' */
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    /* Move button up */
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    /* 'after' pseudo state for the 'hover' state */
+    &::after {
+      /* Grow the button */
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  /* When you click an element */
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s 0.75s ease-out;
+    /* Apply the styles of the 0% (moveInBottom animation)
+       before the animation starts */
+    animation-fill-mode: backwards;
+  }
+}
