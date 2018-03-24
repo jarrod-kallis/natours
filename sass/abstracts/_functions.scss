@@ -1,0 +1,9 @@
+@function calcColWidth($numberOfColumnsToTakeUp, $totalNumberOfColumns) {
+  @return calc(
+    (
+        #{$numberOfColumnsToTakeUp} * (
+            100% - ((#{$totalNumberOfColumns} - 1) * #{$gutter-horizontal})
+          ) / #{$totalNumberOfColumns}
+      ) + ((#{$numberOfColumnsToTakeUp} - 1) * #{$gutter-horizontal})
+  );
+}
