@@ -7,10 +7,13 @@
   "author": "Jarrod Kallis <jarrod.kallis@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+    "compile:sass": "node-sass sass/main.scss css/style.css -w",
+    "server": "live-server",
+    "start": "concurrently \"yarn compile:sass\" \"yarn server\""
   },
   "dependencies": {},
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "node-sass": "^4.7.2"
   }
 }
