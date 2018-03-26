@@ -1,6 +1,6 @@
 .row {
   max-width: $grid-width;
-  background-color: #eee;
+  //background-color: #eee;
   // Center a block element inside another block element
   margin: 0 auto;
   @include clearfix;
@@ -15,7 +15,7 @@
      * = contains ...
      $ = ends with ... */
   [class^="col-"] {
-    background-color: orangered;
+    //background-color: orangered;
     float: left;
 
     &:not(:last-child) {
