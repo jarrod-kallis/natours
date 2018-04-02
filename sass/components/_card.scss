@@ -15,6 +15,7 @@
     left: 0;
     backface-visibility: hidden;
     border-radius: 0.3rem;
+    overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
 
     &--front {
@@ -52,5 +53,37 @@
   }
   &:hover &__side--back {
     transform: rotateY(0);
+  }
+  // Card Front Styling
+  &__picture {
+    background-size: cover;
+    height: 23rem;
+    background-blend-mode: screen; // Only works in Safari, FireFox & Chrome
+    -webkit-clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85%,
+      0 100%
+    ); // Only works in Safari, FireFox & Chrome
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85%,
+      0 100%
+    ); // Only works in Safari, FireFox & Chrome
+    &--1 {
+      background-image: linear-gradient(
+          to right bottom,
+          $color-secondary-light,
+          $color-secondary-dark
+        ),
+        url(../img/nat-5.jpg);
+    }
+    &--2 {
+      background-image: url(../img/nat-5.jpg);
+    }
+    &--3 {
+      background-image: url(../img/nat-5.jpg);
+    }
   }
 }
