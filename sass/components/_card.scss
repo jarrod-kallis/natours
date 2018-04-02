@@ -59,12 +59,8 @@
     background-size: cover;
     height: 23rem;
     background-blend-mode: screen; // Only works in Safari, FireFox & Chrome
-    -webkit-clip-path: polygon(
-      0 0,
-      100% 0,
-      100% 85%,
-      0 100%
-    ); // Only works in Safari, FireFox & Chrome
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    // Only works in Safari, FireFox & Chrome
     clip-path: polygon(
       0 0,
       100% 0,
@@ -156,11 +152,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // Absolute positioning removes the normal 100% width
+    // for block elements so we have to manually set it here
     width: 90%;
     text-align: center;
   }
   &__price-box {
-    text-align: center;
+    // Not necessary as 'text-align' is an inherited property
+    // text-align: center;
     color: $color-white;
     margin-bottom: 8rem;
   }
