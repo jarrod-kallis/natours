@@ -1,4 +1,5 @@
 .btn {
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -13,6 +14,10 @@
       parent with 'position: relative' */
     position: relative;
     font-size: $default-font-size;
+
+    // Change the <button> element
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -29,9 +34,13 @@
   }
 
   /* When you click an element */
-  &:active {
+  &:active,
+  &:focus {
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+
+    // Change the <button> element
+    outline: none;
   }
 
   &::after {
