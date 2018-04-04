@@ -1,5 +1,5 @@
 .navigation {
-  &__checkbox{
+  &__checkbox {
     display: none;
   }
 
@@ -12,6 +12,7 @@
     right: 6rem;
     border-radius: 50%;
     z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
   }
 
   &__background {
@@ -21,35 +22,37 @@
     height: 6rem;
     width: 6rem;
     border-radius: 50%;
-    background-image: radial-gradient($color-primary-light, $color-primary-dark);
+    background-image: radial-gradient(
+      $color-primary-light,
+      $color-primary-dark
+    );
     z-index: 1000;
-
-    transform: scale(80);
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
   }
-
-  &__nav{
+  &__nav {
     position: fixed;
     height: 100vh;
-    width: 100vw; // 100% - same thing
     top: 0;
     left: 0;
     z-index: 1500;
+    // Hide navigation items
+    left: -100%;
+    opacity: 0;
+    width: 0%;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-
-  &__list{
+  &__list {
     position: absolute;
     @include center(50%);
     list-style: none;
     text-align: center;
-
+    width: 100%;
     // 'navigation-list' can be any name
     counter-reset: navigation-list;
   }
-
-  &__item{
+  &__item {
     margin: 1rem;
   }
-
   &__link {
     &::before {
       counter-increment: navigation-list;
@@ -57,7 +60,6 @@
       display: inline-block;
       margin-right: 1.5rem;
     }
-
     &:link,
     &:visited {
       display: inline-block;
@@ -68,16 +70,19 @@
       text-decoration: none;
       text-transform: uppercase;
       // Solid colour gradient (like on booking form)
-      background-image: linear-gradient(120deg, transparent 0%, transparent 40%, $color-white 50%);
+      background-image: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 40%,
+        $color-white 50%
+      );
       background-size: 300%;
-      transition: all .5s;
-
+      transition: all 0.5s;
       span {
         display: inline-block;
         margin-right: 1.5rem;
       }
     }
-
     &:hover,
     &:active {
       // Use 99% instead of 100% to fix a 'shake' bug on the right at the end of the animation
@@ -85,5 +90,15 @@
       color: $color-primary;
       transform: translateX(1rem);
     }
+  }
+  // Hide navigation background
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+  // Show navigation items
+  &__checkbox:checked ~ &__nav {
+    left: 0;
+    opacity: 1;
+    width: 100vw; // 100% - same thing
   }
 }
