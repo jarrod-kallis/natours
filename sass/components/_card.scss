@@ -149,9 +149,10 @@
   // Card Back Styling
   &__cta {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    @include center(50%);
     // Absolute positioning removes the normal 100% width
     // for block elements so we have to manually set it here
     width: 90%;
