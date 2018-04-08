@@ -7,6 +7,14 @@
 
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
+    }
+  }
+
+  @include respond(tab-port) {
+    max-width: 50rem;
   }
 
   /* Attribute selector: select all elements with a class
@@ -20,6 +28,17 @@
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    // When we hit the tablet portrait screen width then we make all columns take up 100% width.
+    // We need to mark it as important, because its declaration comes before the individual grid's.
+    @include respond(tab-port) {
+      width: 100% !important;
     }
   }
 
