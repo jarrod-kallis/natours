@@ -21,7 +21,31 @@ html {
      Since we want our default font size to be 10px
      we need to make it 62.5% (10px/16px*100).
      Indicates what 1rem is. */
-  font-size: 62.5%;
+  font-size: 62.5%; // 10px
+
+  // @media (max-width: 600px) {
+  //   font-size: 50%;
+  // }
+
+  // @include respond-phone {
+  //   font-size: 50%;
+  // }
+  // width > 1800px
+  @include respond(big-desktop) {
+    font-size: 75%; // 12px, 12/16 = 75%
+  }
+  // width < 1200px
+  @include respond(tab-land) {
+    font-size: 56.25%; // 9px, 9/16 = 56.25%
+  }
+  // width < 900px
+  @include respond(tab-port) {
+    font-size: 50%; // 8px, 8/16 = 50%
+  }
+  // width < 600px
+  // @include respond(phone) {
+  //   font-size: 37.5%; // 6px, 6/16 = 37.5%
+  // }
 }
 
 body {
