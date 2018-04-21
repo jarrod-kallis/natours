@@ -350,7 +350,13 @@
     <div class="footer__logo-box u-margin-bottom-big">
       <!-- Density Switching: 1x = low resolution screen, 2x = high resolution screen -->
       <!-- <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo"> -->
-      <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo">
+      <!-- <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo"> -->
+
+      <!-- Art Direction: Use different images based on screen size -->
+      <picture class="footer__logo">
+        <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
+        <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">
+      </picture>
     </div>
     <div class="row">
       <div class="col-1-of-2">
