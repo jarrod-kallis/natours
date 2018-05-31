@@ -175,7 +175,10 @@
   // --------------------------
   // Massive media query for smaller devices to redraw the card in a totally different way
   // --------------------------
-  @include respond(tab-port) {
+  // We also need to cater for large screen devices where the user cannot hover ie. iPads/Tablets
+  // @include respond(tab-port) {
+  @media only screen and (max-width: 56.25em /*900px*/),
+    only screen and (hover: none) {
     // The card loses its height, because its children are all position: absolute. So set the card's height to the same as its children.
     height: auto;
     border-radius: 0.3rem;
