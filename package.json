@@ -15,10 +15,10 @@
       "postcss --use autoprefixer -b \"last 10 versions\" css/style.concat.css -o css/style.prefix.css",
     "compress:css":
       "node-sass css/style.prefix.css css/style.css --output-style compressed",
-    "rename:css": "rename-files css \"style.compiled.css\" \"style.css\"",
+    "rename:css": "rename-files css \"style.concat.css\" \"style.css\"",
     "server": "live-server",
     "start":
-      "concurrently \"yarn compile:sass && yarn run rename:css && yarn watch:sass\" \"yarn server\"",
+      "concurrently \"yarn compile:sass && yarn concat:css && yarn run rename:css && yarn watch:sass\" \"yarn server\"",
     "build:css":
       "yarn compile:sass && yarn concat:css && yarn prefix:css && yarn compress:css"
   },
