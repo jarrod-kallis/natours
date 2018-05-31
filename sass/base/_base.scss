@@ -56,3 +56,9 @@ body {
     padding: 0;
   }
 }
+
+// Change the style of selected text on the page
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
